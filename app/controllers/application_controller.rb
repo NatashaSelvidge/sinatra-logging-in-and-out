@@ -11,8 +11,16 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-
-  end
+    @user = User.find_by(username:params[:username])
+    binding.pry
+    # if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+    # else 
+    #      @error = "Sorry, you entered the worng information, please try again"
+    #         erb :'users/login'
+    #   end
+    end 
+  
 
   get '/account' do
 
